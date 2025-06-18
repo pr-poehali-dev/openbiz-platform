@@ -9,47 +9,59 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Icon from "@/components/ui/icon";
 import { Link } from "react-router-dom";
+import { useI18n } from "@/lib/i18n";
 
 const Dashboard = () => {
+  const { t } = useI18n();
   const stats = [
-    { title: "Активы", value: "24", icon: "Building2", color: "text-blue-600" },
     {
-      title: "Баланс",
+      title: t("dashboard.assets"),
+      value: "24",
+      icon: "Building2",
+      color: "text-blue-600",
+    },
+    {
+      title: t("dashboard.balance"),
       value: "₽2,450,000",
       icon: "CreditCard",
       color: "text-green-600",
     },
     {
-      title: "Заказы",
+      title: t("dashboard.orders"),
       value: "156",
       icon: "ShoppingCart",
       color: "text-orange-600",
     },
-    { title: "Клиенты", value: "89", icon: "Users", color: "text-purple-600" },
+    {
+      title: t("dashboard.clients"),
+      value: "89",
+      icon: "Users",
+      color: "text-purple-600",
+    },
   ];
 
   const quickActions = [
     {
-      title: "Управление активами",
-      desc: "Добавить или изменить технику",
+      title: t("dashboard.manage.assets"),
+      desc: t("dashboard.manage.assets.desc"),
       icon: "Settings",
       link: "/business/assets",
     },
     {
-      title: "Финансы",
-      desc: "Просмотр транзакций и отчётов",
+      title: t("dashboard.finance.title"),
+      desc: t("dashboard.finance.desc"),
       icon: "BarChart3",
       link: "/business/finance",
     },
     {
-      title: "Социальная сеть",
-      desc: "Публикации и взаимодействие",
+      title: t("dashboard.social.title"),
+      desc: t("dashboard.social.desc"),
       icon: "MessageSquare",
       link: "/social",
     },
     {
-      title: "Отчёты",
-      desc: "Создать новый отчёт",
+      title: t("dashboard.reports.title"),
+      desc: t("dashboard.reports.desc"),
       icon: "FileText",
       link: "/business/reports",
     },
@@ -61,10 +73,8 @@ const Dashboard = () => {
 
       <div className="container mx-auto p-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Панель управления</h1>
-          <p className="text-gray-600">
-            Добро пожаловать в OpenBiz! Вот краткий обзор вашего бизнеса
-          </p>
+          <h1 className="text-3xl font-bold mb-2">{t("dashboard.title")}</h1>
+          <p className="text-gray-600">{t("dashboard.welcome")}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -89,8 +99,10 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Быстрые действия</CardTitle>
-              <CardDescription>Переход к основным разделам</CardDescription>
+              <CardTitle>{t("dashboard.quick.actions")}</CardTitle>
+              <CardDescription>
+                {t("dashboard.quick.actions.desc")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {quickActions.map((action, index) => (
@@ -120,18 +132,24 @@ const Dashboard = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Последние уведомления</CardTitle>
-              <CardDescription>Важные события и новости</CardDescription>
+              <CardTitle>{t("dashboard.notifications")}</CardTitle>
+              <CardDescription>
+                {t("dashboard.notifications.desc")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start space-x-3 p-3 border rounded-lg">
                 <Icon name="Bell" className="h-5 w-5 text-blue-600 mt-0.5" />
                 <div>
-                  <p className="font-medium">Новое обновление платформы</p>
-                  <p className="text-sm text-gray-600">
-                    Добавлены новые функции аналитики
+                  <p className="font-medium">
+                    {t("dashboard.notification.update")}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">2 часа назад</p>
+                  <p className="text-sm text-gray-600">
+                    {t("dashboard.notification.update.desc")}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    2 {t("dashboard.time.hours")}
+                  </p>
                 </div>
               </div>
 
@@ -141,11 +159,15 @@ const Dashboard = () => {
                   className="h-5 w-5 text-orange-600 mt-0.5"
                 />
                 <div>
-                  <p className="font-medium">Требуется обновление данных</p>
-                  <p className="text-sm text-gray-600">
-                    Проверьте информацию о компании
+                  <p className="font-medium">
+                    {t("dashboard.notification.data")}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">1 день назад</p>
+                  <p className="text-sm text-gray-600">
+                    {t("dashboard.notification.data.desc")}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    1 {t("dashboard.time.days")}
+                  </p>
                 </div>
               </div>
             </CardContent>

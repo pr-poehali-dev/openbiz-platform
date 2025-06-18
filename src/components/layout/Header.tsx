@@ -7,8 +7,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Icon from "@/components/ui/icon";
 import { Link } from "react-router-dom";
+import { useI18n } from "@/lib/i18n";
 
 const Header = () => {
+  const { language, setLanguage, t } = useI18n();
+
   return (
     <header className="border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -22,19 +25,19 @@ const Header = () => {
             to="/dashboard"
             className="text-gray-600 hover:text-primary transition-colors"
           >
-            Панель управления
+            {t("header.dashboard")}
           </Link>
           <Link
             to="/business"
             className="text-gray-600 hover:text-primary transition-colors"
           >
-            Бизнес-кабинет
+            {t("header.business")}
           </Link>
           <Link
             to="/social"
             className="text-gray-600 hover:text-primary transition-colors"
           >
-            Соцсеть
+            {t("header.social")}
           </Link>
         </nav>
 
@@ -42,13 +45,20 @@ const Header = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm">
-                RU <Icon name="ChevronDown" className="ml-1 h-4 w-4" />
+                {language.toUpperCase()}{" "}
+                <Icon name="ChevronDown" className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Русский</DropdownMenuItem>
-              <DropdownMenuItem>English</DropdownMenuItem>
-              <DropdownMenuItem>中文</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage("ru")}>
+                {t("header.russian")}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage("en")}>
+                {t("header.english")}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage("zh")}>
+                {t("header.chinese")}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -60,12 +70,12 @@ const Header = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem asChild>
-                <Link to="/profile">Профиль</Link>
+                <Link to="/profile">{t("header.profile")}</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/settings">Настройки</Link>
+                <Link to="/settings">{t("header.settings")}</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>Выйти</DropdownMenuItem>
+              <DropdownMenuItem>{t("header.logout")}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

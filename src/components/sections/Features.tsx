@@ -1,41 +1,39 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { useI18n } from "@/lib/i18n";
 
 const Features = () => {
+  const { t } = useI18n();
   const features = [
     {
       icon: "Building2",
-      title: "Учёт активов",
-      description:
-        "Полный контроль над техникой, оборудованием и имуществом компании",
+      title: t("features.assets"),
+      description: t("features.assets.desc"),
     },
     {
       icon: "CreditCard",
-      title: "Финансовая аналитика",
-      description:
-        "Интеграция с банками, анализ расходов и доходов в реальном времени",
+      title: t("features.finance"),
+      description: t("features.finance.desc"),
     },
     {
       icon: "Users",
-      title: "Социальная сеть",
-      description:
-        "Взаимодействие с партнёрами и клиентами в едином пространстве",
+      title: t("features.social"),
+      description: t("features.social.desc"),
     },
     {
       icon: "FileText",
-      title: "Отчётность",
-      description:
-        "Автоматическое формирование финансовых и операционных отчётов",
+      title: t("features.reports"),
+      description: t("features.reports.desc"),
     },
     {
       icon: "ShoppingCart",
-      title: "Торговая площадка",
-      description: "Продажа товаров и услуг через встроенную платформу",
+      title: t("features.marketplace"),
+      description: t("features.marketplace.desc"),
     },
     {
       icon: "Shield",
-      title: "Безопасность",
-      description: "Надёжная защита данных и многоуровневая система доступа",
+      title: t("features.security"),
+      description: t("features.security.desc"),
     },
   ];
 
@@ -43,10 +41,8 @@ const Features = () => {
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Всё для вашего бизнеса</h2>
-          <p className="text-xl text-gray-600">
-            Комплексное решение для управления и развития компании
-          </p>
+          <h2 className="text-4xl font-bold mb-4">{t("features.title")}</h2>
+          <p className="text-xl text-gray-600">{t("features.subtitle")}</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
